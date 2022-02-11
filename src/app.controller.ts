@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('sample')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @Get('get')
   getHello(): string {
     return this.appService.getHello();
+  }
+  @Get('gett')
+  findAll(@Req() request: Request): string {
+    return 'This action returns all cats';
   }
 }
